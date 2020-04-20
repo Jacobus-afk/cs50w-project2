@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+        <script src="{{ url_for('static', filename='index.js') }}"></script>
+    </head>
+
+    <body>
+        <main>
+            <div id="new-user" style="display: none;">
+                <form action="" id="new-user-form" method="post">
+                    <h2>Hi there! Looks like you're new here.. Enter your handle</h2>
+                    <input type="text" name="handle">
+                    <input type="submit" value="Register" disabled>
+                </form>
+            </div>
+
+            <div id="old-user" style="display: none;">
+                <h2>Hi there, </h2>
+            </div>
+        </main>
+    </body>
+</html>
