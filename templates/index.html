@@ -23,14 +23,25 @@
         
                     <div id="old-user" style="display: none;">
                         <h2 id="welcome-text">Hi there, </h2>
+                        
+                        
+                        <div class="server-div">
+                            <h3>Server messages</h3>
+                            <h5 id="channel-msg">&nbsp</h5>
+                            <div id="server-messages">
+    
+                            </div>
+                        </div>
+                        
                         <div class="create-channel-div">
                             <form id="create-channel" action="" method="post">
                                 <h3>Create a channel</h3>
-                                <h5 class="socket-resp" id="create-msg">&nbsp</h5>
+                                <h5 id="create-msg">&nbsp</h5>
                                 <input type="text" name="channel" id="channel-name">
                                 <input type="submit" value="Create" disabled>
                             </form>
                         </div>
+
                         <div class="choose-channel-div">
                             <h3>Connect to a channel</h3>
                             <select id="select-channel"></select>
@@ -40,8 +51,14 @@
                 </div>
     
                 <div id="channel-messenger" style="display: none;">
-                    <h5 class="socket-resp" id="channel-msg">&nbsp</h5>
-                    
+                    <!--<h5 class="socket-resp" id="channel-msg">&nbsp</h5>
+                    <div class="server-div">
+                        <h3>Server messages</h3>
+                        <div id="server-messages">
+
+                        </div>
+                    </div>-->
+
                     <div class="chat-div">
                         <h3>Channel messages</h3>
                         <div id="messages-box">
@@ -53,12 +70,7 @@
                         </form>
                     </div>
 
-                    <div class="server-div">
-                        <h3>Server messages</h3>
-                        <div id="server-messages">
 
-                        </div>
-                    </div>
 
                     <div id="disconnected-div">
                         <button type="button" id="button-chan-disconnect" disabled>Disconnect</button>

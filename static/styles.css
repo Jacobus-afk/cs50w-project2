@@ -4,23 +4,45 @@
     font-family: 'Poppins', sans-serif;
 }
 
+html,body
+{
+    height: 100%;
+    margin: 0;
+}
+
 .container
 {
     display: flex;
     flex-direction: row;
+    height: 100vh;
+    
 }
 
 #channel-admin
 {
+    width: 20%;
     border: 2px solid;
+
 }
 
 #channel-messenger
 {
+    width: 80%;
     border: 2px solid;
+
 }
 
 .server-div
+{
+    border: 2px solid;
+}
+
+.create-channel-div
+{
+    border: 2px solid;
+}
+
+.choose-channel-div
 {
     border: 2px solid;
 }
@@ -30,7 +52,7 @@ h3
     margin: 2px auto;
 }
 
-.socket-resp
+h5
 {
     margin: 2px;
 }

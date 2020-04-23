@@ -1,4 +1,3 @@
-//let handle = localStorage.getItem('user_handle');
 let user = JSON.parse(localStorage.getItem("user_data"));
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -8,11 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("socket connected")
     });*/
 
-    //const new_user_div = document.getElementById("new-user");
-    //const old_user_div = document.getElementById("old-user");
     const chan_create_form = document.getElementById("create-channel");
-    //const create_msg = document.getElementById("create-msg");
-    //const channel_msg = document.getElementById("channel-msg");
     const select_chan = document.getElementById("select-channel");
     const connect_chan = document.getElementById("button-chan-connect");
     const disconnect_chan = document.getElementById("button-chan-disconnect");
@@ -45,9 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         new_form.onsubmit = () => {
             //TODO: have to verify that handle is not taken
-            //user.name = name.value;
-            //console.log(user.name);
-            //localStorage.setItem('user_data', JSON.stringify(user));
+
             update_localstorage("name", name.value);
             new_user_div.style.display = "none";
             user_confirmed();
@@ -74,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     function update_localstorage(entry, value)
     {
-        user[entry] = value;// select_chan.value;
+        user[entry] = value;
         localStorage.setItem('user_data', JSON.stringify(user));
     }
 
@@ -92,20 +85,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.getElementById("channel-messenger").style.display = "block";
         const channel_msg = document.getElementById("channel-msg");
-        //const channel = select_chan.value;
         socket.emit("join", {"username": user.name, "channel": channel}, (resp, reason) => {
             if (resp != "ack") {
                 channel_msg.style.color = "red";
                 disconnect_chan.disabled = true;
                 connect_chan.disabled = false;
-                //console.log(reason.reason);
             }
             else {
                 channel_msg.style.color = "green";
                 disconnect_chan.disabled = false;
                 connect_chan.disabled = true;
                 update_localstorage("channel", channel);
-                //console.log(reason.reason);
             }
             channel_msg.innerHTML = reason.reason;
         })
@@ -114,6 +104,11 @@ document.addEventListener("DOMContentLoaded", () => {
     function leave_channel()
     {
         const channel_msg = document.getElementById("channel-msg");
+        const server_msg = document.getElementById("server-messages");
+        while (server_msg.firstChild) {
+            server_msg.removeChild(server_msg.lastChild);
+        }
+
         socket.emit("leave", {"username": user.name, "channel": user.channel}, (resp, reason) => {
             if (resp != "ack") {
                 channel_msg.style.color = "red";
@@ -123,6 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 disconnect_chan.disabled = true;
                 connect_chan.disabled = false;
                 update_localstorage("channel", "");
+
             }
             channel_msg.innerHTML = reason.reason;
         })
@@ -144,7 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     socket.on("add_channel", data => {
-        //console.log("add_channel socket call");
         add_channel_selection(data.channelname);
     })
 
@@ -161,19 +156,10 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     connect_chan.onclick = () => {
-        //console.log("Joined channel: " + select_chan.value);
-        //connect_chan.disabled = true;
-        //disconnect_chan.disabled = false;
-        //user.channel = select_chan.value;
-        //localStorage.setItem('user_data', JSON.stringify(user));
-        //update_localstorage("channel", select_chan.value);
         join_channel(select_chan.value);
     }
     
     disconnect_chan.onclick = () => {
-        //user.channel = undefined;
-        //localStorage.setItem('user_data', JSON.stringify(user));
-        //update_localstorage("channel", undefined);
         leave_channel();
     }
 })
