@@ -4,12 +4,33 @@
     font-family: 'Poppins', sans-serif;
 }
 
-h3
+.container
 {
-    margin-bottom: 2px;
+    display: flex;
+    flex-direction: row;
 }
 
-#create-msg
+#channel-admin
+{
+    border: 2px solid;
+}
+
+#channel-messenger
+{
+    border: 2px solid;
+}
+
+.server-div
+{
+    border: 2px solid;
+}
+
+h3
+{
+    margin: 2px auto;
+}
+
+.socket-resp
 {
     margin: 2px;
 }
