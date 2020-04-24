@@ -8,6 +8,29 @@ html,body
 {
     height: 100%;
     margin: 0;
+    box-sizing: border-box;
+    padding-left: 2px;
+}
+
+h3
+{
+    margin: 0;
+}
+
+h5
+{
+    margin: 2px;
+}
+
+p
+{
+    font-size: 0.8rem;
+    margin: 3px;
+}
+
+input, button, select
+{
+    border-radius: 5px;
 }
 
 .container
@@ -15,44 +38,123 @@ html,body
     display: flex;
     flex-direction: row;
     height: 100vh;
-    
+    margin: 0;
 }
 
 #channel-admin
 {
-    width: 20%;
-    border: 2px solid;
-
+    height: 100%;
+    width: 18%;
 }
 
-#channel-messenger
+#new-user
 {
-    width: 80%;
-    border: 2px solid;
-
+    display: none;
 }
 
-.server-div
+#old-user
 {
-    border: 2px solid;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 25%;
+    display: none;
+    width: auto;
 }
 
-.create-channel-div
+#create-channel-div
 {
+    height: auto;
+    box-sizing: border-box;
     border: 2px solid;
+    border-radius: 5px;
+    padding: 2px;
+    position: relative;
 }
 
+#chan-inputs
+{
+    height: 23px;
+
+}
+
+#channel-name
+{
+    /*height: 17px;*/
+    padding-bottom: 2px;
+    width: calc(100% - 4px - 4px - 2px);
+    position: absolute;
+    left: 2px;
+    bottom: 2px;
+}
+
+#channel-button
+{
+    position: absolute;
+    right: 2px;
+    bottom: 4px;
+}
+/*
 .choose-channel-div
 {
     border: 2px solid;
 }
-
-h3
+*/
+#channel-messenger
 {
-    margin: 2px auto;
+    display: none;
+    height: 100%;
+    width: 82%;
 }
 
-h5
+.chat-div
 {
-    margin: 2px;
+    box-sizing: border-box;
+    padding: 5px;
+    width: 100%;
+    height: 100%;
 }
+
+#messages-box
+{
+    box-sizing: border-box;
+    height: 95%;
+    border-radius: 5px;
+    border: 2px solid;
+}
+
+#messages-div
+{
+    position: relative;
+    height: auto;
+}
+
+#connect-div
+{
+    width: 50%;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+#connect-flex
+{
+    display: flex;
+    justify-content: flex-end;
+}
+
+#connect-msg, #select-channel
+{
+    margin: auto 20px;
+}
+
+#messages-form
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+
+
+

@@ -73,8 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function user_confirmed()
     {
-        document.getElementById("old-user").style.display = "block";
+        document.getElementById("old-user").style.display = "flex";
         document.getElementById("welcome-text").innerHTML += user.name + "!";
+        document.getElementById("channel-messenger").style.display = "block";
     }
 
     function join_channel(channel)
@@ -82,45 +83,43 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!channel) {
             return;
         }
-
-        document.getElementById("channel-messenger").style.display = "block";
-        const channel_msg = document.getElementById("channel-msg");
+        const connect_msg = document.getElementById("connect-msg");
         socket.emit("join", {"username": user.name, "channel": channel}, (resp, reason) => {
             if (resp != "ack") {
-                channel_msg.style.color = "red";
+                connect_msg.style.color = "red";
                 disconnect_chan.disabled = true;
                 connect_chan.disabled = false;
             }
             else {
-                channel_msg.style.color = "green";
+                connect_msg.style.color = "green";
                 disconnect_chan.disabled = false;
                 connect_chan.disabled = true;
                 update_localstorage("channel", channel);
             }
-            channel_msg.innerHTML = reason.reason;
+            connect_msg.innerHTML = reason.reason;
         })
     }
 
     function leave_channel()
     {
-        const channel_msg = document.getElementById("channel-msg");
-        const server_msg = document.getElementById("server-messages");
-        while (server_msg.firstChild) {
-            server_msg.removeChild(server_msg.lastChild);
+        const connect_msg = document.getElementById("connect-msg");
+        const msg_box = document.getElementById("messages-box");
+        while (msg_box.firstChild) {
+            msg_box.removeChild(msg_box.lastChild);
         }
 
         socket.emit("leave", {"username": user.name, "channel": user.channel}, (resp, reason) => {
             if (resp != "ack") {
-                channel_msg.style.color = "red";
+                connect_msg.style.color = "red";
             }
             else {
-                channel_msg.style.color = "gray";
+                connect_msg.style.color = "gray";
                 disconnect_chan.disabled = true;
                 connect_chan.disabled = false;
                 update_localstorage("channel", "");
 
             }
-            channel_msg.innerHTML = reason.reason;
+            connect_msg.innerHTML = reason.reason;
         })
     }
 
@@ -144,10 +143,11 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     socket.on("server message", data => {
-        const server_msg = document.getElementById("server-messages");
-        const p = document.createElement('h5');
+        const msg_box = document.getElementById("messages-box");
+        const p = document.createElement('p');
+        p.style.fontStyle = "italic";
         p.innerHTML = data;
-        server_msg.append(p);
+        msg_box.append(p);
     })
 
 
