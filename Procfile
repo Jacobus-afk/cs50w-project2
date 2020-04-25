@@ -1,1 +1,1 @@
-web: flask translate compile; gunicorn application:app
+web: flask translate compile; gunicorn -k flask_sockets.worker application:app
