@@ -10,6 +10,7 @@ html,body
     margin: 0;
     box-sizing: border-box;
     padding-left: 2px;
+    padding-right: 2px;
 }
 
 h3
@@ -81,8 +82,8 @@ input, button, select
 #channel-name
 {
     /*height: 17px;*/
-    padding-bottom: 2px;
-    width: calc(100% - 4px - 4px - 2px);
+    /*padding-bottom: 2px;*/
+    width: calc(88% - 54px);/*calc(100% - 4px - 4px - 2px);*/
     position: absolute;
     left: 2px;
     bottom: 2px;
@@ -123,6 +124,14 @@ input, button, select
     border: 2px solid;
 }
 
+.message-line
+{
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 #messages-div
 {
     position: relative;
@@ -131,7 +140,7 @@ input, button, select
 
 #connect-div
 {
-    width: 50%;
+    width: 100%;
     position: absolute;
     right: 0;
     top: 0;
@@ -143,18 +152,48 @@ input, button, select
     justify-content: flex-end;
 }
 
+#messages-form
+{
+    margin-right: auto;
+    width: 55%;
+    /*position: absolute;
+    left: 0;
+    top: 0;*/
+}
+
+#user-msg
+{
+    width: calc(88% - 54px);
+}
+
 #connect-msg, #select-channel
 {
     margin: auto 20px;
 }
 
-#messages-form
+
+
+
+@media only screen and (max-width: 930px)
 {
-    position: absolute;
-    left: 0;
-    top: 0;
+    .container
+    {
+        flex-direction: column;
+    }
+
+    #channel-admin
+    {
+        height: auto;
+        width: 100%;
+    }
+    #channel-messenger
+    {
+        height: 100%;
+        width: 100%;
+    }
+    #connect-msg
+    {
+        display: none;
+    }
 }
-
-
-
 
